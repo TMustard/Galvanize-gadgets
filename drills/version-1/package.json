@@ -8,5 +8,8 @@
   },
   "keywords": [],
   "author": "Jeff Dean, Kim Schlesinger",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2"
+  }
 }
