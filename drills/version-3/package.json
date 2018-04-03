@@ -10,5 +10,8 @@
     "test": "mocha"
   },
   "author": "CJ, Dan and Kim",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2"
+  }
 }
