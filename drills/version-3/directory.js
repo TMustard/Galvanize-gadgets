@@ -24,7 +24,13 @@ class Directory {
       }
     }
   }
-  mv(oldName, newName) {}
+  mv(oldName, newName) {
+    for (var i = 0; i < this.list.length; i++) {
+      if ((this.list[i] = oldName)) {
+        this.list[i] = newName;
+      }
+    }
+  }
 }
 
 module.exports = Directory;
