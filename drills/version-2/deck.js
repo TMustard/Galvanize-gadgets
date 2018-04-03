@@ -24,7 +24,7 @@ class Deck {
   }
   populate(newCards) {
     for (var i = 0; i < newCards.length; i++) {
-      var newCard = new Card(newCards[i][0], newCards[i][1]);
+      let newCard = new Card(newCards[i][0], newCards[i][1]);
       this.cards.push(newCard);
     }
     return this.cards;
