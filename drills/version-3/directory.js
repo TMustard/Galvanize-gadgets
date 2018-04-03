@@ -31,6 +31,19 @@ class Directory {
       }
     }
   }
+  cp(fileToCopy, copy) {
+    let $index = this.list.indexOf(fileToCopy);
+    let $text = this.files[$index];
+    this.list.unshift(copy);
+    this.list.pop();
+    this.files.unshift($text);
+  }
+  ln_s(firstObject, secondObject) {
+    this.list.push(secondObject);
+    let firstIndex = this.list.indexOf(firstObject);
+    let secondIndex = this.list.indexOf(secondObject);
+    let fileToLink = this.files[firstIndex];
+  }
 }
 
 module.exports = Directory;
