@@ -39,7 +39,7 @@ class Directory {
     this.files.unshift($text);
   }
   ln_s(firstObject, secondObject) {
-    this.list.push(secondObject);
+    this.list.unshift(secondObject);
     let firstIndex = this.list.indexOf(firstObject);
     let secondIndex = this.list.indexOf(secondObject);
     let fileToLink = this.files[firstIndex];
