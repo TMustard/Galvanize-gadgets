@@ -50,3 +50,4 @@ module.exports = Directory;
 
 // for (var i = 0; i < this.files.length; i++) {
 //   return this.files[i].value.length;
+//
