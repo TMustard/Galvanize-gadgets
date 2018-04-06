@@ -1,18 +1,33 @@
-// Your code here
 class Directory {
   constructor(name) {
     this.name = name;
     this.list = [];
     this.lengths = [];
     this.files = [];
+    this.links = [];
   }
   ls() {
     return this.list;
   }
   write(fileName, fileText) {
-    this.list.unshift(fileName);
-    this.lengths.unshift(`${fileName} - ${fileText.length}`);
-    this.files.unshift(fileText);
+    for (var i = 0; i < this.files.length; i++) {
+      if (this.files[i].name === fileName) {
+        this.files[i].content = fileText;
+        this.lengths.unshift(`${fileName} - ${fileText.length}`);
+      }
+    }
+    if (!this.list.includes(fileName)) {
+      const file = {
+        name: fileName,
+        content: fileText
+      };
+      this.list.unshift(fileName);
+      this.lengths.unshift(`${fileName} - ${fileText.length}`);
+      this.files.unshift(file);
+    }
+    if (this.links.includes(fileName)) {
+      this.files[this.links.indexOf(fileName) + 1].content = fileText;
+    }
   }
   ls_la() {
     return this.lengths;
@@ -20,7 +35,7 @@ class Directory {
   cat(fileName) {
     for (var i = 0; i < this.list.length; i++) {
       if (fileName === this.list[i]) {
-        return this.files[i];
+        return this.files[i].content;
       }
     }
   }
@@ -33,16 +48,34 @@ class Directory {
   }
   cp(fileToCopy, copy) {
     let $index = this.list.indexOf(fileToCopy);
-    let $text = this.files[$index];
+    let $text = this.files[$index].content;
     this.list.unshift(copy);
     this.list.pop();
-    this.files.unshift($text);
+    const file = {
+      name: copy,
+      content: $text
+    };
+    this.files.unshift(file);
   }
   ln_s(firstObject, secondObject) {
-    this.list.unshift(secondObject);
-    let firstIndex = this.list.indexOf(firstObject);
-    let secondIndex = this.list.indexOf(secondObject);
-    let fileToLink = this.files[firstIndex];
+    this.links.unshift(firstObject, secondObject);
+    if (!this.list.includes(secondObject)) {
+      this.list.push(secondObject);
+    }
+
+    for (var i = 0; i < this.list.length; i++) {
+      if (this.files[i].name === firstObject) {
+        const $text = this.files[i].content;
+        const file = {
+          name: secondObject,
+          content: $text
+        };
+
+        this.lengths.pop();
+        this.lengths.unshift(`${secondObject} - ${$text.length}`);
+        return this.files.push(file);
+      }
+    }
   }
 }
 
