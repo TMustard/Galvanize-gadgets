@@ -6,9 +6,11 @@ class Directory {
     this.files = [];
     this.links = [];
   }
+
   ls() {
     return this.list;
   }
+
   write(fileName, fileText) {
     for (var i = 0; i < this.files.length; i++) {
       if (this.files[i].name === fileName) {
@@ -29,9 +31,11 @@ class Directory {
       this.files[this.links.indexOf(fileName) + 1].content = fileText;
     }
   }
+
   ls_la() {
     return this.lengths;
   }
+
   cat(fileName) {
     for (var i = 0; i < this.list.length; i++) {
       if (fileName === this.list[i]) {
@@ -39,6 +43,7 @@ class Directory {
       }
     }
   }
+
   mv(oldName, newName) {
     for (var i = 0; i < this.list.length; i++) {
       if ((this.list[i] = oldName)) {
@@ -46,6 +51,7 @@ class Directory {
       }
     }
   }
+
   cp(fileToCopy, copy) {
     let $index = this.list.indexOf(fileToCopy);
     let $text = this.files[$index].content;
@@ -57,6 +63,7 @@ class Directory {
     };
     this.files.unshift(file);
   }
+
   ln_s(firstObject, secondObject) {
     this.links.unshift(firstObject, secondObject);
     if (!this.list.includes(secondObject)) {
