@@ -67,7 +67,7 @@ describe("Directory", () => {
 
   it("symlinks one object to another with ln_s", () => {
     var directory = new Directory("workspace");
-
+    //create variable for foo.txt and set that to be equal to bar.txt
     directory.write("bar.txt", "Hello world");
     directory.ln_s("bar.txt", "foo.txt");
     directory.write("bar.txt", "I've changed");
